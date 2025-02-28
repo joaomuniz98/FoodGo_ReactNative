@@ -32,7 +32,7 @@ const styles = StyleSheet.create({
     image: {
         position: 'absolute', 
         top: 160,
-        width: 172,  // Ajuste o tamanho da imagem
+        width: 172,  
         height: 75,
     },
     imageHamburguer1: {
