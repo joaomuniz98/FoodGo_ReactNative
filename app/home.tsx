@@ -39,7 +39,7 @@ export default function HomeScreen() {
           </View>
         </View>
 
-        <View>
+        <View style={{ flex: 1 }}>
             <SlideFiltro data={dataSlide}></SlideFiltro>
         </View>
       </View>
