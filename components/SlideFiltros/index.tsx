@@ -1,62 +1,77 @@
-import { View , StyleSheet, Text } from "react-native";
+import React, { useEffect, useState } from "react";
+import { View, StyleSheet, Text, TouchableOpacity } from "react-native";
 
 interface Props {
-    data: string[]; 
- }
+  data: NomesSlide[];
+}
+
+interface NomesSlide {
+  id: number;
+  name: string;
+  select: boolean;
+}
 
 const SlideFiltro: React.FC<Props> = ({ data }) => {
 
-    console.log(data)
+    
+  const [items, setItems] = useState<NomesSlide[]>(data);
 
-    return ( 
+  useEffect(() => {
+    setItems(data);
+  }, [data]);
+  
 
-        <>
-            <View  style={styles.main}>
-                {data.map((item, index) => (
-                <View style={index === 0  ? styles.divButtonSelect : styles.divButtons}> 
-                    <Text style={{color: index === 0 ? '#fff' : '#383636'}} key={index}>{item}</Text>
-                </View>
-                ))}
-            </View>
-        </>
-    )
-}
+  function handleSelect(index: number) {
+    const newData = items.map((item, i) =>
+      i === index ? { ...item, select: true } : { ...item, select: false }
+    );
+    setItems(newData);
+  }
+  
+
+  return (
+    <View style={styles.main}>
+      {items.map((item, index) => (
+        <TouchableOpacity key={item.id} onPress={() => handleSelect(index)}>
+          <View style={item.select ? styles.divButtonSelect : styles.divButtons}>
+            <Text style={{ color: item.select ? "#fff" : "#383636" }}>{item.name}</Text>
+          </View>
+        </TouchableOpacity>
+      ))}
+    </View>
+  );
+};
 
 const styles = StyleSheet.create({
-
-main: {
-
-    display: 'flex',
-    flexDirection: 'row',
-    gap: 8
-},
-
-divButtons: {
-
-    display: 'flex',
-    alignItems: 'center',
-    justifyContent: 'center',
-    backgroundColor: '#ebe3e3',
+  main: {
+    display: "flex",
+    flexDirection: "row",
     flex: 1,
-    minHeight: 50,
-    maxHeight: 'auto',
-    borderRadius: 30
-},
-
-divButtonSelect: {
-    display: 'flex',
+    justifyContent: 'space-evenly',
     alignItems: 'center',
-    justifyContent: 'center',
-    backgroundColor: 'red',
-    width: 75,
+    paddingHorizontal: 10,
+  },
+  divButtons: {
+    flex: 1,
+    alignItems: "center",
+    justifyContent: "center",
+    backgroundColor: "#ebe3e3",
     minHeight: 50,
-    maxHeight: 'auto',
-    borderRadius: 30
-}
+    borderRadius: 30,
+    paddingHorizontal: 10, 
+    minWidth: 80
+  },
+  divButtonSelect: {
+    flex: 1, 
+    alignItems: "center",
+    justifyContent: "center",
+    backgroundColor: "red",
+    width: 75,
+    minWidth: 100,
+    minHeight: 50,
+    borderRadius: 30,
+    paddingHorizontal: 10,
+  },
+});
 
-
-
-})
-
-
-export default SlideFiltro
+export default SlideFiltro;

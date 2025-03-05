@@ -9,13 +9,23 @@ import { useEffect, useState } from 'react';
 
 export default function HomeScreen() {
   const router = useRouter()
-  const [dataSlide, setDataSlider] = useState<string[]>([])
+  const [dataSlide, setDataSlider] = useState<NomesSlide[]>([])
 
+  interface NomesSlide {
+    id: number,
+    name: string,
+    select: boolean
+  }
 
   useEffect(() => {
-    setDataSlider(["All","Combos","Sliders","Classic"])
-  },[])
- 
+    setDataSlider(
+      [
+      { id: 1, name: "All",select: false},
+      { id: 2, name: "Combos",select: false }, 
+      { id: 3, name: "Sliders",select: false }, 
+      { id: 4 ,name: "Classic" ,select: false},])
+  }, [])
+
 
   return (
 
