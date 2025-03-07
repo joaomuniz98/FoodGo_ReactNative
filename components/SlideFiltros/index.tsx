@@ -46,10 +46,11 @@ const styles = StyleSheet.create({
   main: {
     display: "flex",
     flexDirection: "row",
-    flex: 1,
-    justifyContent: 'space-evenly',
+    justifyContent: 'center',
     alignItems: 'center',
     paddingHorizontal: 10,
+    gap: 10,
+    width: 'auto'
   },
   divButtons: {
     flex: 1,

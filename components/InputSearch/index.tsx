@@ -25,23 +25,24 @@ const InputIcon: React.FC<Props> = ({ texto }) => {
 const styles = StyleSheet.create({
   container: {
     flexDirection: "row",
-    alignItems: "center",
+    alignItems: "center", // Alinha verticalmente o ícone e o input
     borderWidth: 1,
     borderRadius: 15,
+    padding: 0,
     borderColor: "rgb(255, 255, 255)",
-     boxShadow: "2px 1px 6px rgba(136, 136, 136, 0.3);",
+    boxShadow: "2px 1px 6px rgba(136, 136, 136, 0.3);",
     paddingHorizontal: 10,
-    height: "100%",
-    width: "80%",
+    height: 50, // Defina uma altura fixa para garantir o alinhamento
+    width: "100%", // Ajuste conforme necessário
   },
   icon: {
-    marginRight: 10, 
+    marginRight: 10, // Espaço entre o ícone e o input
   },
   textInput: {
     fontFamily: 'Poppins-Regular',
     flex: 1,
-    paddingVertical: 10,
-    height: 50
+    paddingVertical: 0, // Remova qualquer padding vertical adicional
+    height: "100%", // Garante que o input ocupe toda a altura do container
   },
 });
 
